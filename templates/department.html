@@ -1,0 +1,72 @@
+{% extends 'hostel_base.html'%}
+{% load static%}
+
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/mystyle.css' %}"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montez&display=swap" rel="stylesheet"><nav class="navbar navbar-expand-md bg-dark navbar-dark">
+
+{% block main %}
+<body>
+    <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container">
+        <div class="main">
+            <div class="row">
+                <div class="col-md-8 mt-1">
+                    <div class="card mb-3 content" style="background-image:url('https://th.bing.com/th?q=HD+Background+Light+Plain&w=120&h=120&c=1&rs=1&qlt=90&cb=1&dpr=1.6&pid=InlineBlock&mkt=en-IN&cc=IN&setlang=en&adlt=moderate&t=1&mw=247');">
+                        <div class="card-body">
+                        <h1 class="m-3 pt-3">Information</h1>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Field</h5>
+                                </div>
+                                <div class="col-md-9 text-secondry">
+                                    <input type="text" name="Field" id="" value="{{Field}}" required>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Semester</h5>
+                                </div>
+                                <div class="col-md-9 text-secondry">
+                                    <input type="text" name="Semester" id="" value="{{Semester}}" required>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>studentcode</h5>
+                                </div>
+                                <div class="col-md-9 text-secondry">
+                                    <input type="text" name="studentcode" id="" value="{{studentcode}}" required>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Timming</h5>
+                                </div>
+                                <div class="col-md-9 text-secondry">
+                                    <input type="time" name="Timming" id="" value="{{Timming}}" required>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+
+{% endblock %}

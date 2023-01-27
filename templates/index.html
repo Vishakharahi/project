@@ -1,0 +1,8 @@
+{% include 'header.html'%}
+{% if messages %}
+<ul>
+   {% for message in messages %}
+       <script>alert("{{message}}")</script>
+   {% endfor %}
+</ul>
+{% endif %}

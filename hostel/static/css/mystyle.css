@@ -1,0 +1,31 @@
+.nav-link:hover{
+    background-color:aquamarine !important;
+    color: black !important;
+    border-radius:15px;
+
+
+}
+
+.nav-link{
+    color: black  !important;
+    font-weight: bolder;
+   
+}
+
+.navbar-brand{
+    font-family: 'Satisfy', cursive;
+    color:limegreen !important;
+    font-size: 50px !important;
+    font-weight:bold;
+}
+body{
+background-image: url('https://cf.bstatic.com/xdata/images/xphoto/max1440/48357989.jpg?k=2551268c286ece963d038bef3adad4f10c1b2739e54a366183ad437c15fcf837&o=');
+background-repeat: no-repeat ;
+background-size: cover;
+}
+.navbar{
+    background-color: transparent !important;
+}
+
+
+
