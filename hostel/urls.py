@@ -15,7 +15,7 @@ urlpatterns = [
      path('info', views.info, name='info'),
      path('images', views.images, name='images'),
      path('Facilities', views.Facilities, name='Facilities'),
-     path('FoodMenu', views.FoodMenu, name='FoodMenu'),
+     path('FoodMenu', views.Food_Menu, name='FoodMenu'),
      path('logout', views.logout, name='logout'),
      path('department', views.department, name='department'),
      path('fee_structure', views.fee_structure, name='fee_structure'),
@@ -26,8 +26,14 @@ urlpatterns = [
      path('PRESIDENTSMESSAGE', views.PRESIDENTSMESSAGE, name='PRESIDENTMESSAGE'),
      path('GURUKULMANAGEMENTCOMMITTIEE', views.GURUKULMANAGEMENTCOMMITTIEE, name='GURUKULMANAGEMENTCOMMITTIEE'),
      path('COREVALUESOFGURUKUL', views.COREVALUESOFGURUKUL, name='COREVALUESOFGURUKUL'),
-     path('change_password', views.change_password, name='change_password')
-     
+     path('student_guidlines', views.student_guidlines, name='student_guidlines'),
+     path('Yoga', views.yoga, name='yoga'),
+     path('Picnic', views.picnic, name='picnic'),
+     path('Arts', views.arts, name='Arts'),
+     path('Games', views.games, name='Arts'),
+     path('change_password', views.change_password, name='change_password'),
+     path('Feedback', views.Feedback, name='Feedback'),
+     path('hostel_booking', views.hostel_booking, name='hostel_booking')
      
 ]
 

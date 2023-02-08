@@ -1,0 +1,86 @@
+{% load static %}
+<html>
+<head>
+
+  <style>
+    .list-group-item{
+    padding:8px !important
+    }
+    body{
+        background-image: url('https://images.designtrends.com/wp-content/uploads/2015/11/17061911/White-Abstract-Plain-Background.jpg');
+        background-repeat: no-repeat ;
+        background-size: cover;
+        }
+        
+    .main{
+            padding: 15px;
+            
+     }
+     .card{
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+            input{
+            width: 100%;
+            text-align: center;
+            height: 40px;
+            font-weight: bolder;
+            border-radius: 5px;
+            border: 2px solid rgba(225,225, 225, 6);
+        }  
+        .text-center{
+         color:black !important;
+         font-size: 20px !important;
+         font-weight:bold;
+        }
+          
+    
+  </style>
+
+<body>
+
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<div class="row justify-content-center" >
+
+  {% comment %} <div class="card" style="width: 14.5rem; height: 14.5rem; border: revert;  margin:10px; padding:10px; background-image: url('https://yesofcorsa.com/wp-content/uploads/2017/12/Hostel-Wallpaper-Background.jpg'); "> {% endcomment %}
+    <div class="card" style="width: 16rem; height: 16rem; border: revert;   margin:6px; padding:14px;">
+    <img src="{% static  'images/yoga1.jpg'%}" class="card-img-top" alt="... " style="width: 230px; max-width: 230px; height:230px;">
+    <div class="card-body">
+  </div>
+  </div>
+
+  <div class="card" style="width: 16rem; height: 16rem; border: revert;   margin:6px; padding:14px;">
+    <img src="{% static  'images/yoga2.jpg'%}" class="card-img-top" alt="... " style="width: 230px; max-width: 230px; height:230px;">
+    <div class="card-body">
+    </div>
+  </div>
+
+  <div class="card" style="width: 16rem; height: 16rem; border: revert;   margin:6px; padding:14px;">
+    <img src="{% static  'images/yoga3.jpg'%}" class="card-img-top" alt="... " style="width: 230px ; max-width:230px; height:230px;">
+
+    <div class="card-body">
+ </div>
+</div>
+</div>
+</div>
+    <p class="text-center" style="color:green !important"; "font-size:40px !important; margin-bottom:9rem;" >  
+    <p class="text-center"style="    margin-bottom: 9rem;" > Yoga is an ancient practice that involves physical poses, concentration, and deep breathing.<br>
+        A regular yoga practice can promoteTrusted Source endurance, strength, calmness, flexibility, and well-being.<br>
+        There are six branches of yoga. Each branch represents a different focus and set of characteristics.<br>
+        Hatha yoga: This is the physical and mental branch that aims to prime the body and mind.<br>
+        Raja yoga: This branch involves meditation and strict adherence to a series of disciplinary steps known as the eight limbs of yoga.<br>
+        Karma yoga: This is a path of service that aims to create a future free from negativity and selfishness.<br>
+        Bhakti yoga: This aims to establish the path of devotion, a positive way to channel emotions and cultivate acceptance and tolerance.<br>
+        Jnana yoga: This branch of yoga is about wisdom, the path of the scholar, and developing the intellect through study.<br>
+        Tantra yoga: This is the pathway of ritual, ceremony, or consummation of a relationship.<br>
+</p>
+
+</body>
+

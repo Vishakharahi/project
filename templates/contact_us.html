@@ -20,7 +20,7 @@
   background-color: red !important;
   }
   body{
-      background-image: url('https://th.bing.com/th/id/OIP.7O1hE_JlaAGdCbE_UtUyhQHaEK?w=288&h=180&c=7&r=0&o=5&dpr=1.6&pid=1.7');
+      background-image: url('https://images.designtrends.com/wp-content/uploads/2015/11/17061911/White-Abstract-Plain-Background.jpg');
       background-repeat: no-repeat ;
       background-size: cover;
       }
@@ -82,15 +82,15 @@
             {% if request.session.id %}
                 <input type="text" name="name" id="" value="{{request.session.name}}" readonly>
             {% else %}
-                <input type="text" name="name" id="" value="" required>
+                <input type="text" name="name" id="" value="" placeholder="enter your name" required>
             {% endif %}
-            <h3>Full Name</h3>
+            <h3>First Name</h3>
         </div>
         <div class="inputbox">
             {% if request.session.id %}
                 <input type="Email" name="email" id="" value="{{request.session.email}}" readonly>
             {% else %}
-                <input type="Email" name="email" id="" value="" required>
+                <input type="Email" name="email" id="" value="" placeholder="enter your email" required>
             {% endif %}
             <h3>Email</h3>
         </div>
@@ -123,7 +123,7 @@
               <h3>
                   Phone
               </h3>
-              <p>+91 7490803083</p>
+              <p>+91 9870048270</p>
           </div>
       </div>
       <div class="box">

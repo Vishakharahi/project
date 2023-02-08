@@ -1,10 +1,11 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 <style>
     .list-group-item{
     padding:8px !important
-    background-color: red !important;
+    background-color : red !important;
     }
     body{
-        background-image: url('https://th.bing.com/th/id/OIP.7O1hE_JlaAGdCbE_UtUyhQHaEK?w=288&h=180&c=7&r=0&o=5&dpr=1.6&pid=1.7');
+        background-image: url('https://images.designtrends.com/wp-content/uploads/2015/11/17061911/White-Abstract-Plain-Background.jpg');
         background-repeat: no-repeat ;
         background-size: cover;
         }
@@ -25,5 +26,50 @@
             font-weight: bolder;
             border-radius: 5px;
             border: 2px solid rgba(225,225, 225, 6);
-        }           
+            }    
+   
+        .table-dark td, .table-dark th, .table-dark thead th {
+    border-color:black;
+    padding: .80rem;
+    vertical-align: top;
+    border-top: 2px solid whitesmoke;
+}
+         
   </style>
+  <body>
+    <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container">
+        <div class="main">
+            <div class="row">
+                <div class="col-md-8 mt-1">
+                    <div class="card mb-3"style="width:962px;">
+                        <h1 class="m-3 pt-3">Food menu</h1>
+                        <div class="card-body">
+  <table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Days</th>
+      <th scope="col">Breakfast</th>
+      <th scope="col">Launch</th>
+      <th scope="col">Evening</th>
+      <th scope="col">Dinner</th>
+      <th scope="col">AtNight</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if item %}
+    {% for item1 in item %}
+    <tr>
+      <th scope="row">{{item1.Days}}</th>
+      <td>{{item1.Breakfast}}</td>
+      <td>{{item1.Launch}}</td>
+      <td>{{item1.Evening}}</td>
+      <td>{{item1.Dinner}}</td>
+      <td>{{item1.AtNight}}</td>
+    </tr>    
+    {% endfor %}
+    {% endif %}
+
+ </tbody>
+</table>

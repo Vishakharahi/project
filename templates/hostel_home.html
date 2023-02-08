@@ -1,13 +1,23 @@
 {% extends 'hostel_base.html'%}
 
 {% block  main %}
+{% if messages %}
+
+
+<ul class="messages">
+    {% for message in messages %}
+    <script>alert('{{message}}')
+    </script>
+    {% endfor %}
+</ul>
+{% endif %}
 <div class="row text-center">
     <div class="col-sm-12 p-2">
        <div class="cardshadow">
         <div class="card-body">
-            <h4 class="text" style="font-size:100px; color:gray;">Welcome to Gurukul</h4>
+           <h4 class="text-center" style="font-size:100px; color:red;font-size: 90px;margin-right:247px;color:black;">Welcome to Gurukul</h4>
             
-            <h2 style="color:pink; font-size:40px">{{request.session.name}}</h2>
+            <h2 style="color:red; font-size:40px">{{request.session.name}}</h2>
             
         </div>
        </div>

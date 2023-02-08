@@ -12,8 +12,8 @@
 
 {% block main %}
 <body>
-    <form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
+    <form action="/department" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
     <div class="container">
         <div class="main">
             <div class="row">
@@ -24,6 +24,16 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-3">
+                                    <h5>Fullname</h5>
+                                </div>
+                                <div class="col-md-9 text-secondry">
+                                    <input type="text" name="Fullname" id="" value="{{Fullname}}" required>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="row">
+                               <div class="col-md-3">
                                     <h5>Field</h5>
                                 </div>
                                 <div class="col-md-9 text-secondry">
@@ -59,14 +69,16 @@
                             </div>
                             <br>
                             <br>
-                            
+                            <input type="submit"action="/department" value="Submit" class="m-2 px-3 btn btn-primary">                           
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </form>
+
 </body>
 
 {% endblock %}

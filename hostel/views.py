@@ -10,6 +10,7 @@ fn=""
 ln=""
 sc=""
 em=""
+phone=""
 pwd=""
 Field=""
 Semester=""
@@ -23,6 +24,12 @@ def index(request):
     return render(request ,'index.html')
 #hostel singup function
 def signup(request):
+    global phone
+    global em
+    global fn
+    global ln
+    global sc
+    global pwd
     request.session['id']=""
     request.session['emailotp']=0
     if request.method == "POST":
@@ -37,20 +44,8 @@ def signup(request):
         em = request.POST['email']
         phone = request.POST['phone']
         pwd = request.POST['password']
-        Field = request.POST['Field']
-        Semester = request.POST['Semester']
-        Timming = request.POST['Timming']
+        
         if not HostelDetail.objects.filter(email=em):
-             new=HostelDetail()
-             new.firstname=fn
-             new.lastname=ln
-             new.studentcode=sc
-             new.email=em
-             new.password=pwd
-             new.Field=Field
-             new.Semester=Semester
-             new.Timming=Timming
-             new.save()
              global otp1
              otp=random.randint(10000, 99999)
              otp1 = str(otp)
@@ -58,14 +53,13 @@ def signup(request):
 
              if len(pwd) >= 8:
                 if len(phone) == 10:
-                            subject, from_email, to = 'Create Account', 'tour.india1414@gmail.com',em
+                            subject, from_email, to = 'Create Account', 'vishakharahi218@gmail.com',em
                             text_content = 'This is an important message.'
-                            html_content = '<img src="https://cdn.pixabay.com/photo/2015/02/27/22/28/india-652857_960_720.png" alt="img"> <br> Hi '+fn+' <br> Is Your One Time Password(OTP)<strong style="color:red;">'+otp1+ '</strong><br>Use For Craete The Account India_Tour'
+                            html_content = '<img src="https://www.web2sms.co.in/wp-content/uploads/2020/05/otpa.png" alt="img"> <br> Hi '+fn+' <br> Is Your One Time Password(OTP)<strong style="color:red;">'+otp1+ '</strong><br>Use For Create The Account Hostel'
 
                             msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
                             msg.attach_alternative(html_content, "text/html")
                             h=msg.send()
-                            print("tht")
                             if h:
                              return redirect('/otp')
                             else:
@@ -82,6 +76,7 @@ def signup(request):
     return render(request,'registration.html')
 
 def otp(request):
+    print(phone)
     #if not request.session[''] =="ghelo":
     print("hello")
     if request.method == "POST":
@@ -96,16 +91,13 @@ def otp(request):
              new.lastname=ln
              new.studentcode=sc
              new.email=em
-             new.password=pwd
-             new.Field=Field
-             new.Semester=Semester
-             new.Timming=Timming
-
+             new.mobile=phone
+             new.password=pwd            
              new.save()
+             messages.success(request, 'Submited Successfully')
              return redirect('/hostel_login')
          else:
-             messages.error(request, 'Otp Are Incorrect')
-       
+             messages.error(request, 'Otp Are Incorrect')     
     context={
             'email': em
             } 
@@ -133,7 +125,9 @@ def hostel_login(request):
            if pa==P:
              request.session['id']=new[0].id
              request.session['name']=new[0].firstname
+             request.session['lastname']=new[0].lastname
              request.session['email']=new[0].email
+             messages.success(request, 'Login Successfully')
              return redirect('/hostel_home') 
            else:
              messages.error(request,"Enter Correct Password")
@@ -158,7 +152,7 @@ def contact_us(request):
               email=request.POST.get('email')
               message=request.POST.get('massage')
               new=Contactus()
-              new.firstname=firstname
+              new.name=firstname
               new.email=email
               new.message=message
               new.save()
@@ -216,13 +210,14 @@ def Facilities(request):
         return redirect('/index')
 
 
-def FoodMenu(request):
-    if request.session['id']:
-       return render(request,'FoodMenu.html')    
-    else:
-        messages.error(request,"Please Login or signups ")               
-        return redirect('/index')
-
+def Food_Menu(request):
+    data=FoodMenu.objects.all().values()   
+    print(data)
+    cont={
+        'item':data
+    }
+    return render(request,'FoodMenu.html',cont)
+    
 
 def profile(request):
             
@@ -233,6 +228,7 @@ def profile(request):
             lastname=request.POST.get('lastname')
             studentcode=request.POST.get('studentcode')
             email=request.POST.get('email')
+            phone=request.POST.get('phone')
             password=request.POST.get('password')
             member = HostelDetail.objects.get(id=updateid)
             member.firstname=firstname
@@ -240,6 +236,7 @@ def profile(request):
             member.image=image
             member.studentcode=studentcode
             member.email=email
+            member.mobile=phone
             member.password=password
             member.save()
             
@@ -256,6 +253,7 @@ def profile(request):
          'lastname':data[0].get('lastname'),
          'studentcode':data[0].get('studentcode'),
          'email':data[0].get('email'),
+         'phone':data[0].get('mobile'),
          'password':data[0].get('password')
          }
          return render(request,'profile.html',context)
@@ -263,54 +261,109 @@ def profile(request):
         messages.error(request,"Please Login or signups ")               
         return redirect('/index')   
 
+# def department(request):
+            
+#     if request.method=='POST':
+#             updateid=request.session['id']
+#             Fullname=request.session['Fullname']
+#             Field=request.POST.get('Field')
+#             Semester=request.POST.get('Semester')
+#             Timming=request.POST.get('Timming')
+#             studentcode=request.POST.get('studentcode')
+#             member = department.objects.get(id=updateid)
+#             member.Fullname=Fullname
+#             member.Field=Field
+#             member.Semester=Semester
+#             member.Timming=Timming
+#             member.studentcode=studentcode
+#             member.save()
+            
+#     id=request.session['id']   
+#     if not id=="":
+#          id=request.session['id']
+#          data=department.objects.filter(id=id).values()
+#          print(data[0].get('firstname'))
+#          print(data[0].get('password'))
+#          context = {
+#          'Fullname':data[0].get('Fullname'),
+#          'Field': data[0].get('Field'),
+#          'Semester': data[0].get('Semester'),
+#          'Timming':data[0].get('Timming'),
+#          'studentcode':data[0].get('studentcode'),
+#          }
+#          return render(request,'department.html',context)
+#     else:
+#         messages.error(request,"Please Login or signups ")               
+#         return redirect('/index')   
+
+
+
 def department(request):
-            
-    if request.method=='POST':
-            updateid=request.session['id']
-            Field=request.POST.get('Field')
-            Semester=request.POST.get('Semester')
-            Timming=request.POST.get('Timming')
-            studentcode=request.POST.get('studentcode')
-            member = HostelDetail.objects.get(id=updateid)
-            member.Field=Field
-            member.Semester=Semester
-            member.Timming=Timming
-            member.studentcode=studentcode
-            member.save()
-            
-    id=request.session['id']   
-    if not id=="":
-         id=request.session['id']
-         data=HostelDetail.objects.filter(id=id).values()
-         print(data[0].get('firstname'))
-         print(data[0].get('password'))
-         context = {
-         
-         'Field': data[0].get('Field'),
-         'Semester': data[0].get('Semester'),
-         'Timming':data[0].get('Timming'),
-         'studentcode':data[0].get('studentcode'),
-         }
-         return render(request,'department.html',context)
-    else:
-        messages.error(request,"Please Login or signups ")               
-        return redirect('/index')   
-     
+    if request.method =='POST':
+              Fullname=request.POST.get('Fullname')
+              Field=request.POST.get('Field')
+              Semester=request.POST.get('Semester')
+              studentcode=request.POST.get('studentcode')
+              Timming=request.POST.get('Timming')
+              new=studentdepartment()
+              new. Fullname =Fullname
+              new.Field=Field
+              new.Semester=Semester
+              new.studentcode=studentcode
+              new.Timming=Timming
+              new.save()
+              messages.error(request,"Ok")
+    return render(request,'department.html')
+
+
 
      
 def fee_structure(request):
-      if request.session['id']:
-       return render(request,'fee_structure.html')    
-      else:
-        messages.error(request,"Please Login or signups ")               
-        return redirect('/index')
     
+    Fees=Feestructure.objects.all().values()   
+    print(Fees)
+    cont={
+        'items':Fees
+    }
+    return render(request,'fee_structure.html',cont)
+        
 def other_activity(request):
       if request.session['id']:
        return render(request,'other_activity.html')    
       else:
         messages.error(request,"Please Login or signups")         
         return redirect('/index')
+
+def yoga(request):
+      if request.session['id']:
+       return render(request,'Yoga.html')    
+      else:
+        messages.error(request,"Please Login or signups")         
+        return redirect('/index')
+
+def picnic(request):
+      if request.session['id']:
+       return render(request,'Picnic.html')    
+      else:
+        messages.error(request,"Please Login or signups")         
+        return redirect('/index')
+
+def arts(request):
+      if request.session['id']:
+       return render(request,'Arts.html')    
+      else:
+        messages.error(request,"Please Login or signups")         
+        return redirect('/index')
+        
+def games(request):
+      if request.session['id']:
+       return render(request,'Games.html')    
+      else:
+        messages.error(request,"Please Login or signups")         
+        return redirect('/index')
+
+
+        
     
 def change_password(request):
     if request.method=='POST':
@@ -338,49 +391,64 @@ def change_password(request):
         return redirect('/index') 
 
 def Aboutus(request):
-    if request.session['id']:
        return render(request,'Aboutus.html')    
-    else:
-        messages.error(request,"Please Login or signups")         
-        return redirect('/index')
-    
+
+
+def Feedback(request):
+    if request.method =='POST':
+              firstname=request.POST.get('firstname')
+              ln=request.POST.get('lastname')
+              email=request.POST.get('email')
+              country=request.POST.get('country')
+              subject=request.POST.get('subject')
+              new=feedback()
+              new.firstname=fn
+              new.ln=ln
+              new.email=em
+              new.country=country
+              new.subject=subject
+              new.save()
+              messages.error(request,"Ok")
+    return render(request,'Feedback.html')
+
+
 def OURFOUNDERS(request):
-    if request.session['id']:
-        return render(request,'OURFOUNDERS.html')    
-    else:
-        messages.error(request,"Please Login or signups ")               
-        return redirect('/index')
+    return render(request,'OURFOUNDERS.html')    
     
 def OURAIM(request):
-     if request.session['id']:
-        return render(request,'OURAIM.html')    
-     else:
-        messages.error(request,"Please Login or signups ")               
-        return redirect('/index')
-
+    return render(request,'OURAIM.html')    
+     
 def PRESIDENTSMESSAGE(request):
-    if request.session['id']:
-        return render(request,'PRESIDENTS MESSAGE.html')    
-    else:
-        messages.error(request,"Please Login or signups ")               
-        return redirect('/index')
-    
-def GURUKULMANAGEMENTCOMMITTIEE(request):
-     if request.session['id']:
-        return render(request,'GURUKULMANAGEMENTCOMMITTIEE.html')    
-     else:
-         messages.error(request,"Please Login or signups ")               
-         return redirect('/index')
-
+    return render(request,'PRESIDENTS MESSAGE.html')    
+        
+def GURUKULMANAGEMENTCOMMITTIEE(request):     
+    return render(request,'GURUKULMANAGEMENTCOMMITTIEE.html')    
+     
 def COREVALUESOFGURUKUL(request):
+    return render(request,'COREVALUESOFGURUKUL.html')    
+        
+def student_guidlines(request):
         if request.session['id']:
-         return render(request,'COREVALUESOFGURUKUL.html')    
+         return render(request,'student_guidlines.html')    
         else:
           messages.error(request,"Please Login or signups ")               
           return redirect('/index')
+         
+# def stu_room(request):
+#     stur=sturoom.objects.all().values()   
+#     print(stu_room)
+#     cont={
+#         'room':stur
+#     }
+#     return render(request,'stu_room.html',cont)
+def hostel_booking(request):
+    return render(request,'hostel_booking.html')
+
+      
 
 def logout(request):
     request.session['id']=""
+    messages.success(request, 'Logout Successfully')
     return redirect('/index')
 
 

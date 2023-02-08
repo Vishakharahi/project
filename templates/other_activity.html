@@ -1,5 +1,76 @@
 {% extends 'hostel_base.html'%}
-
 {% block  main %}
 
-{% endblock %}
+{% load static %}
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+{% comment %} <link rel="stylesheet" href="{% static 'css/mystyle.css' %}"/> {% endcomment %}
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montez&display=swap" rel="stylesheet"><nav class="navbar navbar-expand-md bg-dark navbar-dark">
+
+  <style>
+
+    .nav-link:hover{
+      background-color:aquamarine !important;
+      color: black !important;
+      border-radius:15px;
+  
+  
+  }
+  
+  .nav-link{
+      color: black  !important;
+      font-weight: bolder;
+     
+  }
+  
+  .navbar-brand{
+      font-family: 'Satisfy', cursive;
+      color:limegreen !important;
+      font-size: 50px !important;
+      font-weight:bold;
+  }
+  body{
+  background-image: url('https://png.pngtree.com/back_origin_pic/03/63/75/8d0f00a532e53a4cbb2ee2d0f22dacd5.jpg');
+  background-repeat: no-repeat ;
+  background-size: cover;
+  }
+  .navbar{
+      background-color: transparent !important;
+  }
+  
+  </style>
+  
+
+
+
+<!-- Navbar links -->
+
+<div class="collapse navbar-collapse" id="collapsibleNavbar">
+  <ul class="navbar-nav "  >
+    <li class="nav-item" style="font-size:30; ">
+      <a class="nav-link"href="/Yoga" style="color:black !important">Yoga</a>
+    </li> 
+    <li class="nav-item" style="font-size:30">
+      <a class="nav-link" href="/Picnic" style="color:black !important">Picnic</a>
+    </li>
+    <li class="nav-item" style="font-size:30">
+      <a class="nav-link" href="/Arts" style="color:black !important">Arts</a>
+    </li>
+    <li class="nav-item" style="font-size:30">
+        <a class="nav-link" href="/Games" style="color:black !important">Games</a>
+    </li>
+  </ul>
+</div>
+</nav>
+
+{% if error == "yes"%}
+<script>
+  alert('Something Went Wrong , Try Again...');
+</script>
+{% endif %}
+
+ {% endblock %}
