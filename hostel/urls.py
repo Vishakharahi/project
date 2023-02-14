@@ -33,7 +33,10 @@ urlpatterns = [
      path('Games', views.games, name='Arts'),
      path('change_password', views.change_password, name='change_password'),
      path('Feedback', views.Feedback, name='Feedback'),
-     path('hostel_booking', views.hostel_booking, name='hostel_booking')
+     path('hostel_booking', views.hostel_booking, name='hostel_booking'),
+     path('select_room', views.select_room, name='select_room'),
+     path('footer', views.footer, name='footer'),
+     path('bookingform', views.bookingform, name='bookingform')
      
 ]
 

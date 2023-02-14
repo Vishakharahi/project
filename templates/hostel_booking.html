@@ -1,0 +1,75 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<style>
+    .list-group-item{
+    padding:8px !important;
+    background-color : red !important;
+    }
+    body{
+        background-image: url('https://images.designtrends.com/wp-content/uploads/2015/11/17061911/White-Abstract-Plain-Background.jpg');
+        background-repeat: no-repeat ;
+        background-size: cover;
+        }
+        
+    .main{
+            padding: 15px;
+            
+     }
+     .card{
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+            input{
+            width: 100%;
+            text-align: center;
+            height: 40px;
+            font-weight: bolder;
+            border-radius: 5px;
+            border: 2px solid rgba(225,225, 225, 6);
+            }    
+   
+        .table-dark td, .table-dark th, .table-dark thead th {
+    border-color:black;
+    padding: .80rem;
+    vertical-align: top;
+    border-top: 2px solid whitesmoke;
+}
+         
+  </style>
+  <body>
+    <form class="mx-1 mx-md-4" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container">
+        <div class="main">
+            <div class="row">
+                <div class="col-md-8 mt-1">
+                    <div class="card mb-3"style="width:962px;">
+                        <h1 class="m-3 pt-3">Hostel Booking</h1>
+                        <div class="card-body">
+  <table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Room no.</th>
+      <th scope="col">Price</th>
+      <th scope="col">Max Person</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if Booking %}
+    {% for Booking1 in Booking %}
+    <tr>
+      <th scope="row">{{Booking1.Roomno}}</th>
+      <td>{{Booking1.Price}}</td>
+      <td>{{Booking1.MaxPerson}}</td>
+    </tr>    
+    {% endfor %}
+    {% endif %}
+
+    <br>
+</tbody>
+</table>
+
+</form>
+
+
+    <a href="/select_room" class="m-2 px-3 btn btn-primary" style="width:15%">Submit</a>

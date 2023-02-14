@@ -1,0 +1,125 @@
+ {% if messages %}
+
+
+ <ul class="messages">
+    {% for message in messages %}
+    <script>alert('{{message}}')
+    </script>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<style>
+    
+    .list-group-item{
+        padding:8px !important;
+        background-color : red !important;
+        }
+        body{
+            background-image: url('https://images.designtrends.com/wp-content/uploads/2015/11/17061911/White-Abstract-Plain-Background.jpg');
+            background-repeat: no-repeat ;
+            background-size: cover;
+            }
+            
+        .main{
+                padding: 15px;
+                
+         }
+         .card{
+                position: relative;
+                display: flex;
+                flex-direction: column;
+            }
+                input{
+                width: 100%;
+                text-align: center;
+                height: 40px;
+                font-weight: bolder;
+                border-radius: 5px;
+                border: 2px solid rgba(225,225, 225, 6);
+                }    
+       
+            .table-dark td, .table-dark th, .table-dark thead th {
+        border-color:black;
+        padding: .80rem;
+        vertical-align: top;
+        border-top: 2px solid whitesmoke;
+    }
+             
+      </style>
+<div class="card shadow m-5">
+    <div class="card-body" style="background-image:url('https://th.bing.com/th/id/OIP.-Wpp5e2ONA_QkrOSuAgFnwHaKq?w=115&h=180&c=7&r=0&o=5&dpr=1.6&pid=1.7');margin-top: 117px;
+    margin-left: auto;margin-right: auto;height:auto;width: 917px;">
+      <h5 class="p-2 text-danger" style="font-size:40px;text-align:center; color:red;">Add Your Details</h5>
+      <div class="container-fluid">
+        <form method="post" action="">
+          {% csrf_token %}
+          <div class="form-row" >
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label style="font-weight:bolder;font-size:22px;">Roomno </label>
+                <input type="text" name="Roomno" value="{{item}}" class="form-control" style="width:96%;"  placeholder="Enter your name "required>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label style="font-weight:bolder;font-size:22px;"> Full name </label>
+                <input type="text" name="Fullname" class="form-control" style="width:96%;"  placeholder="Enter your name "required>
+              </div>
+            </div>         
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label style="font-weight:bolder;font-size:22px;"> Father name</label>
+                <input type="text" name="Fathername" class="form-control" style="width:96%;" placeholder="Enter your father name"  required>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label style="font-weight:bolder;font-size:22px;"> Mother name</label>
+                <input type="text" name="Mothername" class="form-control" style="width:96%;" placeholder="Enter your mother name"  required>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label style="font-weight:bolder;font-size:22px;"> Email</label>
+                <input type="Email" name="Email" class="form-control" style="width:96%;" placeholder="Enter your email"  required>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label style="font-weight:bolder;font-size:22px;"> City</label>
+                <input type="text" name="City" class="form-control" style="width:97%;" placeholder="Enter your City"  required>
+              </div>
+            </div>            
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label style="font-weight:bolder;font-size:22px;"> Father occupation</label>
+                <input type="text" name="Fatheroccupation" class="form-control" style="width:96%;" placeholder="Enter your father occupation"  required>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label style="font-weight:bolder; font-size:22px;">Father number</label>
+                <input type="number" name="Fathernumber" class="form-control" style="width:96%;" placeholder="Enter your father number"  required>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label style="font-weight:bolder;font-size:22px;">Student number</label>
+                <input type="number" name="Studentnumber" class="form-control" style="width:96%;" placeholder="Enter your number"  required>
+              </div>
+            </div>
+          </div>  
+          <input type="submit" style="width:16%" value="Go">
+          <a href="hostel_home" class="m-2 px-3 btn btn-primary" style="width:15%">Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div> 
+
+  {% if error == "yes"%}
+  <script>
+    alert('Something Went Wrong , Try Again...');
+  </script>
+  {% endif %}
+  

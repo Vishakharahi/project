@@ -1,0 +1,93 @@
+
+{% load static %}
+<html>
+<head>
+
+  <style>
+    .list-group-item{
+    padding:8px !important
+    }
+    body{
+        background-image: url('https://images.designtrends.com/wp-content/uploads/2015/11/17061911/White-Abstract-Plain-Background.jpg');
+        background-repeat: no-repeat ;
+        background-size: cover;
+        }
+        
+    .main{
+            padding: 15px;
+            
+     }
+     .card{
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+            input{
+            width: 100%;
+            text-align: center;
+            height: 40px;
+            font-weight: bolder;
+            border-radius: 5px;
+            border: 2px solid rgba(225,225, 225, 6);
+        }           
+  </style>
+
+<body>
+
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  
+  <form action="/select_room" method="post">
+    {% csrf_token %}    
+
+  
+<div class="row justify-content-center" >
+  <marquee _ngcontent-viu-c12="" behavior="scroll" direction="right" class="bulletinMarque" style="color:red;font-size:26px;background-color:black;">PLEASE BOOK YOUR ROOM FOR YOUR COMFORT ZONE</marquee>
+  <div class="card" style="width: 18rem; height: 21rem; border: revert;  margin-top:139px; padding:20px; background-image: url('https://th.bing.com/th/id/OIP.w9dyk1A_rne5GeI1ALS2FwHaJm?w=137&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7');
+  background-repeat: no-repeat ; ">
+  <div class="card-body">
+    
+  </div>
+    <div class="row">    
+      <div class="col-25">    
+        <label for="country">ROOM</label>    
+      </div>    
+      <div class="col-7">    
+        <select id="country" name="room" >    
+          
+          {% if item %}
+          {% for item1 in item%}
+          <option value="{{item1.Roomno}}">{{item1.Roomno}}</option>    
+            
+          {% endfor %}
+          {% endif%}  
+        </select>    
+      </div>          
+    </div> 
+    <div class="row" style="margin-bottom: -69px;">    
+      <input class="m-2 px-3 btn btn-primary" type="submit" value="Send">  
+      <a href="/bookingform" class="m-2 px-3 btn btn-primary" >Select Room</a>  
+    </div>
+    
+           
+  </form> 
+  
+     
+</div>
+
+</div> 
+
+
+
+{% comment %} <form class="mx-1 mx-md-4" action="/bookingform" method="post"  enctype="multipart/form-data">
+  {% csrf_token %}
+    <input type="submit" value="Select room" class="m-2 px-3 btn btn-primary" style="width:15%">
+</form>    {% endcomment %}
+   
+</body>    
+</html> 

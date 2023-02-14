@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+
+
+
 # Create your models here.
 
 class HostelDetail(models.Model):
@@ -8,7 +11,7 @@ class HostelDetail(models.Model):
     lastname = models.CharField(max_length=50)
     studentcode = models.CharField(max_length=50)
     email = models.EmailField(max_length=100)
-    mobile=models.CharField(max_length=200)
+    mobile=models.IntegerField(max_length=200)
     password = models.CharField(max_length=100)
 
     def __str__(self):
@@ -98,6 +101,36 @@ class feedback(models.Model):
     
     def __str__(self):
         return self.firstname
+
+class Booking(models.Model):
+    Roomno = models.CharField(max_length=100)
+    Price = models.CharField(max_length=100)
+    MaxPerson = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.Roomno
+
+class Bookingform(models.Model):
+    Roomno = models.CharField(max_length=100)
+    Fullname = models.CharField(max_length=100)
+    Fathername = models.CharField(max_length=100)
+    Mothername = models.CharField(max_length=100)
+    Email = models.CharField(max_length=100)
+    City = models.CharField(max_length=100)
+    Fatheroccupation = models.CharField(max_length=100)
+    Fathernumber = models.CharField(max_length=100)
+    Studentnumber = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.Fullname
+
+class Selectroom(models.Model):
+    Roomno = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.Roomno
+
+
 
 
     

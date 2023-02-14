@@ -148,7 +148,7 @@ def hostel_home(request):
     
 def contact_us(request):
     if request.method =='POST':
-              firstname=request.POST.get('firstname')
+              firstname=request.POST.get('name')
               email=request.POST.get('email')
               message=request.POST.get('massage')
               new=Contactus()
@@ -396,9 +396,9 @@ def Aboutus(request):
 
 def Feedback(request):
     if request.method =='POST':
-              firstname=request.POST.get('firstname')
+              fn=request.POST.get('firstname')
               ln=request.POST.get('lastname')
-              email=request.POST.get('email')
+              em=request.POST.get('email')
               country=request.POST.get('country')
               subject=request.POST.get('subject')
               new=feedback()
@@ -434,17 +434,72 @@ def student_guidlines(request):
           messages.error(request,"Please Login or signups ")               
           return redirect('/index')
          
-# def stu_room(request):
-#     stur=sturoom.objects.all().values()   
-#     print(stu_room)
-#     cont={
-#         'room':stur
-#     }
-#     return render(request,'stu_room.html',cont)
-def hostel_booking(request):
-    return render(request,'hostel_booking.html')
 
-      
+def hostel_booking(request):
+    if request.session['id']:
+        book=Booking.objects.all().values()   
+        print(book)
+        cont={
+            'Booking':book
+        }
+        return render(request,'hostel_booking.html',cont)
+    else:
+        messages.error(request,"Please Login or signups ")               
+        return redirect('/index')   
+    
+
+
+def select_room(request):
+    if request.method=="POST":
+        id=request.POST.get('room')
+        select=Selectroom()
+        select.Roomno=id
+        select.save()
+
+    if request.session['id']: 
+        data=Booking.objects.all().values()
+        context={
+            "item":data
+        }
+        return render(request,'select_room.html',context) 
+    else:
+        messages.error(request,"Please Login or signups ")               
+        return redirect('/index')   
+   
+
+def bookingform(request):
+    if request.method =='POST':
+              Roomno=request.POST.get('Roomno')
+              fullname=request.POST.get('Fullname')
+              fathername=request.POST.get('Fathername')
+              mothername=request.POST.get('Mothername')
+              email=request.POST.get('Email')
+              city=request.POST.get('City')
+              fatheroccupation=request.POST.get('Fatheroccupation')
+              fathernumber=request.POST.get('Fathernumber')
+              studentnumber=request.POST.get('Studentnumber')
+              new=Bookingform()
+              new.Roomno=Roomno
+              new.Fullname=fullname
+              new.Fathername=fathername
+              new.Mothername=mothername
+              new.Email=email
+              new.City=city
+              new.Fatheroccupation=fatheroccupation
+              new.Fathernumber=fathernumber
+              new.Studentnumber=studentnumber
+              new.save()
+              messages.error(request,"Ok")
+    data=Selectroom.objects.all().order_by('-id').values()
+    print(data[0].get('Roomno'))
+    context={
+        'item':data[0].get('Roomno')
+    }
+    return render(request,'bookingform.html',context)
+
+def footer(request):
+    return render(request,'footer.html')
+
 
 def logout(request):
     request.session['id']=""
